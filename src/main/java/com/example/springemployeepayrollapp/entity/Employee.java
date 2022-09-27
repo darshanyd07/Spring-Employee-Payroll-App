@@ -1,10 +1,17 @@
 package com.example.springemployeepayrollapp.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+
 public class Employee
 {
     public String firstName;
@@ -21,7 +28,8 @@ public class Employee
      * Employee Fields: id, firstName, lastName, salary, email, mobileNumber, startDate.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public int id;
 
     public Employee(String firstName, String lastName, String address, Long salary, String profilePic, String note,  int id)

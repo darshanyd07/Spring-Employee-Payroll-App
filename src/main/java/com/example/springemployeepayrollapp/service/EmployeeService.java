@@ -3,8 +3,11 @@ package com.example.springemployeepayrollapp.service;
 import com.example.springemployeepayrollapp.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService
@@ -22,5 +25,22 @@ public class EmployeeService
 
     public List<Employee> getAllEmployees() {
         return iEmployeeService.findAll();
+    }
+
+    public Optional<Employee> getById(int id)
+    {
+        return iEmployeeService.findById(id);
+    }
+
+    public Employee editData(Employee employee,Integer id)
+    {
+        iEmployeeService.save(employee);
+        return employee;
+    }
+
+
+    public String deleteById(int id) {
+        iEmployeeService.deleteById(id);
+        return "Employee with ID: " + id + " is Deleted Successfully!!";
     }
 }

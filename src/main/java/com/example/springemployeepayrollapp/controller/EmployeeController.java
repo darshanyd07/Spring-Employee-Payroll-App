@@ -3,12 +3,10 @@ package com.example.springemployeepayrollapp.controller;
 import com.example.springemployeepayrollapp.entity.Employee;
 import com.example.springemployeepayrollapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeController
@@ -24,5 +22,24 @@ public class EmployeeController
     public List<Employee> createUSer()
     {
         return employeeService.getAllEmployees();
+    }
+
+    @PutMapping("/edit/{id}")
+    public Employee edit(@RequestBody Employee user,@PathVariable Integer id)
+    {
+        return employeeService.editData(user,id);
+    }
+    @GetMapping("/employee/{id}")
+    public Optional<Employee> createUSer(@PathVariable int id)
+    {
+        return employeeService.getById(id);
+    }
+
+
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable int id)
+    {
+        return employeeService.deleteById(id);
     }
 }
