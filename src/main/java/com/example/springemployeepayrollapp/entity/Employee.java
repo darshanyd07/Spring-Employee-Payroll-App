@@ -56,6 +56,17 @@ public class Employee
         this.note = employee.note;
 
     }
+    public Employee(Employee employee,int id)
+    {
+        this.id = employee.id;
+        this.firstName = employee.firstName;
+        this.lastName = employee.lastName;
+        this.address = employee.address;
+        this.profilePic = employee.profilePic;
+        this.salary = employee.salary;
+        this.note = employee.note;
+
+    }
 
     public Employee()
     {

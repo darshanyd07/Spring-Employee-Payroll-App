@@ -27,6 +27,8 @@ public class EmployeeController
     @PutMapping("/edit/{id}")
     public Employee edit(@RequestBody Employee user,@PathVariable Integer id)
     {
+        Optional<Employee> studentOptional = employeeService.getById(id);
+
         return employeeService.editData(user,id);
     }
     @GetMapping("/employee/{id}")

@@ -23,7 +23,8 @@ public class EmployeeService
         return newEmployee;
     }
 
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees()
+    {
         return iEmployeeService.findAll();
     }
 
@@ -34,9 +35,15 @@ public class EmployeeService
 
     public Employee editData(Employee employee,Integer id)
     {
-        iEmployeeService.save(employee);
-        return employee;
+        if (iEmployeeService.findById(id).isPresent())
+        {
+            iEmployeeService.save(employee);
+            return employee;
+        }
+        return null;
     }
+
+
 
 
     public String deleteById(int id) {
