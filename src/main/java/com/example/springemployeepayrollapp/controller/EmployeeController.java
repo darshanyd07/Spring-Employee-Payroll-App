@@ -4,11 +4,12 @@ import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 import com.example.springemployeepayrollapp.dto.ResponseDTO;
 import com.example.springemployeepayrollapp.entity.Employee;
 import com.example.springemployeepayrollapp.service.IEmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@Slf4j
 @RequestMapping("/employee")
 @RestController
 public class EmployeeController
@@ -31,6 +32,7 @@ public class EmployeeController
     public ResponseEntity<ResponseDTO> getAllEmployees()
     {
         ResponseDTO responseDTO = new ResponseDTO("Employee List Received Successfully", iEmployeeService.getAllEmployees());
+        log.info("Get All Data Successfully.......");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 

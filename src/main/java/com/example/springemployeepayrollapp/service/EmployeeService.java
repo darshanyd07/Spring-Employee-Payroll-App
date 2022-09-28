@@ -3,6 +3,7 @@ package com.example.springemployeepayrollapp.service;
 import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 import com.example.springemployeepayrollapp.entity.Employee;
 import com.example.springemployeepayrollapp.repository.EmployeeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class EmployeeService implements IEmployeeService
 
     public List<Employee> getAllEmployees()
     {
+
         return employeeRepository.findAll();
     }
 
@@ -52,6 +54,7 @@ public class EmployeeService implements IEmployeeService
         {
             Employee employee1 = new Employee(id, employeeDTO);
             Employee alpha = employeeRepository.save(employee1);
+
             return "This is the result"+ alpha;
         }
         return "No Match";
