@@ -1,53 +1,59 @@
 package com.example.springemployeepayrollapp.service;
 
+import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 import com.example.springemployeepayrollapp.entity.Employee;
+import com.example.springemployeepayrollapp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeService
+public class EmployeeService implements IEmployeeService
 {
+
     @Autowired
-    IEmployeeService iEmployeeService;
+    EmployeeRepository employeeRepository;
+
 
     public Employee addEmployee(Employee employee)
     {
-        Employee newEmployee = new Employee(employee);
-        iEmployeeService.save(employee);
-        employee.toString();
-        return newEmployee;
+        return employeeRepository.save(employee);
     }
+
 
     public List<Employee> getAllEmployees()
     {
-        return iEmployeeService.findAll();
+        return employeeRepository.findAll();
     }
+
 
     public Optional<Employee> getById(int id)
     {
-        return iEmployeeService.findById(id);
+        return employeeRepository.findById(id);
     }
 
-    public Employee editData(Employee employee,Integer id)
+
+    public String deleteById(int id)
     {
-        if (iEmployeeService.findById(id).isPresent())
+        if (employeeRepository.findById(id).isPresent())
         {
-            iEmployeeService.save(employee);
-            return employee;
+            employeeRepository.deleteById(id);
+            return "Employee with ID: " + id + " is Deleted Successfully!!";
         }
-        return null;
+        else return "No employee was found with given id.";
     }
 
 
-
-
-    public String deleteById(int id) {
-        iEmployeeService.deleteById(id);
-        return "Employee with ID: " + id + " is Deleted Successfully!!";
+    public String editEmployee(EmployeeDTO employeeDTO, int id)
+    {
+        if (employeeRepository.findById(id).isPresent())
+        {
+            Employee employee1 = new Employee(id, employeeDTO);
+            Employee alpha = employeeRepository.save(employee1);
+            return "This is the result"+ alpha;
+        }
+        return "No Match";
     }
 }

@@ -1,14 +1,23 @@
 package com.example.springemployeepayrollapp.service;
 
+import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 import com.example.springemployeepayrollapp.entity.Employee;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public interface IEmployeeService extends JpaRepository<Employee, Integer>
+/**
+ * Interface containing methods from service class - IEmployeeService
+ */
+public interface IEmployeeService
 {
+    Employee addEmployee(Employee employee);
 
+    List<Employee> getAllEmployees();
+
+    Optional<Employee> getById(int id);
+
+    String deleteById(int id);
+
+    String editEmployee(EmployeeDTO employeeDtO, int id);
 }
