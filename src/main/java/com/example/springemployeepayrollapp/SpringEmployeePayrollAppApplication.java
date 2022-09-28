@@ -12,7 +12,7 @@ public class SpringEmployeePayrollAppApplication
     {
         SpringApplication.run(SpringEmployeePayrollAppApplication.class, args);
         log.info("-----------Welcome To Spring Employee Payroll App------------");
-        System.out.println("------Welcome To Spring Employee Payroll App-------");
+
     }
 
 }
