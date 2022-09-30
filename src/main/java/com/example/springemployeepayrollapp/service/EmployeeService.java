@@ -2,6 +2,7 @@ package com.example.springemployeepayrollapp.service;
 
 import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 import com.example.springemployeepayrollapp.entity.Employee;
+import com.example.springemployeepayrollapp.exception.CustomException;
 import com.example.springemployeepayrollapp.repository.EmployeeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,26 @@ public class EmployeeService implements IEmployeeService
     }
 
 
-    public List<Employee> getAllEmployees()
-    {
-        log.info("-----------EmployeeS  All Data Show Successfully ------------");
-        return employeeRepository.findAll();
+    public List<Employee> getAllEmployees() {
+        if (employeeRepository.findAll().isEmpty())
+        {
+            log.info("-----------No employee in database.------------");
+            throw new CustomException("No employee in database.");
+
+        } else return employeeRepository.findAll();
+
     }
 
 
-    public Optional<Employee> getById(int id)
-    {
-        log.info("-----------Employee Id "+id+ " Data Show Successfully ------------");
-        return employeeRepository.findById(id);
+
+    public Optional<Employee> getById(int id) {
+        if (employeeRepository.findById(id).isPresent())
+        {
+            log.info("---------Employee Id :- "+id+" Show Successfully -----------");
+            return employeeRepository.findById(id);
+
+        }
+        else throw new CustomException("No employee matches with the given ID");
     }
 
 
@@ -45,10 +55,10 @@ public class EmployeeService implements IEmployeeService
         if (employeeRepository.findById(id).isPresent())
         {
             employeeRepository.deleteById(id);
-            log.info("-----------Employee Id  "+id+ " Data Delete Successfully ------------");
+            log.info("---------Employee Id :- "+id+" Delete Successfully -----------");
             return "Employee with ID: " + id + " is Deleted Successfully!!";
         }
-        else return "No employee was found with given id.";
+        else throw new CustomException("No employee matches with the given ID");
     }
 
 
@@ -61,6 +71,6 @@ public class EmployeeService implements IEmployeeService
             log.info("-----------Employee Id "+id+ " Data Update Successfully ------------");
             return "This is the result"+ alpha;
         }
-        return "No Match";
+        else throw new CustomException("No employee matches with the given ID");
     }
 }
