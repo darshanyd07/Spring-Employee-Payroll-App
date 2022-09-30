@@ -56,7 +56,7 @@ public class EmployeeController
 
 
     @PutMapping("update/{id}")
-    public ResponseEntity<ResponseDTO> editEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable int id)
+    public ResponseEntity<ResponseDTO> editEmployee(@Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable int id)
     {
         ResponseDTO responseDTO = new ResponseDTO("Employee Updated Successfully", iEmployeeService.editEmployee(employeeDTO, id));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
