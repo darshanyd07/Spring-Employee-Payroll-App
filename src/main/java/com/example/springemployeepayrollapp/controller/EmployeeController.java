@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
 @Slf4j
 @RequestMapping("/employee")
 @RestController
@@ -20,7 +23,7 @@ public class EmployeeController
 
 
     @PostMapping("/post")
-    public ResponseEntity<ResponseDTO> createEmployees(@RequestBody EmployeeDTO employeeDTO)
+    public ResponseEntity<ResponseDTO> createEmployees(@Valid  @RequestBody EmployeeDTO employeeDTO)
     {
         Employee employee1 = new Employee(employeeDTO);
         ResponseDTO responseDTO = new ResponseDTO("Employee Created Successfully", iEmployeeService.addEmployee(employee1));
