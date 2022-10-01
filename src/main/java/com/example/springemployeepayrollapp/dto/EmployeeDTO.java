@@ -1,5 +1,6 @@
 package com.example.springemployeepayrollapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class EmployeeDTO
     @NotEmpty(message = "Department Can Not Empty")
     public String department;
     @PastOrPresent(message = "Plz Enter Either Past Or Present Date....!!!! ")
+    @JsonFormat(pattern = "dd-MMM-yyy")
     public LocalDate startDate;
     @NotEmpty(message = "Notes Can Not Empty")
     public String notes;

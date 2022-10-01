@@ -27,6 +27,7 @@ public class EmployeeController
     {
         Employee employee1 = new Employee(employeeDTO);
         ResponseDTO responseDTO = new ResponseDTO("Employee Created Successfully", iEmployeeService.addEmployee(employee1));
+        log.info("-----------Employee Data Add Successfully ------------");
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
@@ -44,13 +45,16 @@ public class EmployeeController
     public ResponseEntity<ResponseDTO> getByID(@PathVariable int id)
     {
         ResponseDTO responseDTO = new ResponseDTO("Employee Received Successfully", iEmployeeService.getById(id));
+        log.info("Get Employee Id : "+id+"  Data Successfully.......");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteEmployee(@PathVariable int id) {
+    public ResponseEntity<ResponseDTO> deleteEmployee(@PathVariable int id)
+    {
         ResponseDTO responseDTO = new ResponseDTO("Employee Deleted Successfully", iEmployeeService.deleteById(id));
+        log.info("Get Employee Id : "+id+"  Data Delete Successfully.......");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
@@ -59,6 +63,7 @@ public class EmployeeController
     public ResponseEntity<ResponseDTO> editEmployee(@Valid @RequestBody EmployeeDTO employeeDTO, @PathVariable int id)
     {
         ResponseDTO responseDTO = new ResponseDTO("Employee Updated Successfully", iEmployeeService.editEmployee(employeeDTO, id));
+        log.info("Get Employee Id : "+id+"  Data Update Successfully.......");
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
