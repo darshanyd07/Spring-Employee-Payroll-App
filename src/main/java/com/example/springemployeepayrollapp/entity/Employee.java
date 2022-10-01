@@ -3,11 +3,9 @@ package com.example.springemployeepayrollapp.entity;
 
 import com.example.springemployeepayrollapp.dto.EmployeeDTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Employee
@@ -23,7 +21,11 @@ public class Employee
 
     public String gender;
 
-    public String department;
+
+    @ElementCollection
+    @CollectionTable(name = "Employee_Department", joinColumns = @JoinColumn(name = "id"))
+    public List<String> department;
+
 
     public int salary;
     public String mobileNumber;

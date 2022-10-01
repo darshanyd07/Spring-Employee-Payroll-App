@@ -14,6 +14,7 @@ public interface IEmployeeService
     Employee addEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
+    List<Employee> getEmployeeByDepartment(String department);
 
     Optional<Employee> getById(int id);
 

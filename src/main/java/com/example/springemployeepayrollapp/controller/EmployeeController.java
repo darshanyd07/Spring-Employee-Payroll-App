@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/employee")
@@ -64,6 +65,14 @@ public class EmployeeController
     {
         ResponseDTO responseDTO = new ResponseDTO("Employee Updated Successfully", iEmployeeService.editEmployee(employeeDTO, id));
         log.info("Get Employee Id : "+id+"  Data Update Successfully.......");
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/departmentName/{department}")
+    public ResponseEntity<ResponseDTO> getEmployeePayrollDeptData(@PathVariable String department)
+    {
+        List<Employee> empDataList = iEmployeeService.getEmployeeByDepartment(department);
+        ResponseDTO responseDTO = new ResponseDTO("Success call for Departments!!!", empDataList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
