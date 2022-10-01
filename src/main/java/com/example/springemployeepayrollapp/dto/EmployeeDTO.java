@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 //Lombok Library
@@ -24,12 +21,19 @@ public class EmployeeDTO
     public String profilePic;
     @NotEmpty(message = "Address Can Not Empty")
     public String address;
+
+    @NotBlank(message = "Address Can Not Empty")
+    public String gender;
+
     @Min(value = 5000 , message = "Salary Cannot Be Less Than 5000")
     @Max(value = 50000 , message = "Salary Cannot Be Greater Than 50000")
     public int salary;
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number should be a 10 digit number.")
     public String mobileNumber;
-    @NotEmpty(message = "Start Date Can Not Empty")
+
+    @NotEmpty(message = "Department Can Not Empty")
+    public String department;
+    @PastOrPresent(message = "Plz Enter Either Past Or Present Date....!!!! ")
     public LocalDate startDate;
     @NotEmpty(message = "Notes Can Not Empty")
     public String notes;

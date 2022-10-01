@@ -20,6 +20,11 @@ public class Employee
     public String lastName;
     public String profilePic;
     public String address;
+
+    public String gender;
+
+    public String department;
+
     public int salary;
     public String mobileNumber;
     public LocalDate startDate;
@@ -36,8 +41,10 @@ public class Employee
         this.firstName = employeeDTO.firstName;
         this.lastName = employeeDTO.lastName;
         this.profilePic = employeeDTO.profilePic;
+        this.gender = employeeDTO.gender;
         this.address = employeeDTO.address;
         this.mobileNumber = employeeDTO.mobileNumber;
+        this.department = employeeDTO.department;
         this.notes = employeeDTO.notes;
         this.salary = employeeDTO.salary;
         this.startDate = employeeDTO.startDate;
@@ -50,8 +57,10 @@ public class Employee
         this.lastName = employeeDTO.lastName;
         this.profilePic = employeeDTO.profilePic;
         this.address = employeeDTO.address;
+        this.gender = employeeDTO.gender;
         this.mobileNumber = employeeDTO.mobileNumber;
         this.notes = employeeDTO.notes;
+        this.department = employeeDTO.department;
         this.salary = employeeDTO.salary;
         this.startDate = employeeDTO.startDate;
     }
