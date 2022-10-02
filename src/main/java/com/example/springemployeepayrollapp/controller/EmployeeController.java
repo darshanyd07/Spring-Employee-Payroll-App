@@ -75,4 +75,19 @@ public class EmployeeController
         ResponseDTO responseDTO = new ResponseDTO("Success call for Departments!!!", empDataList);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+//    @GetMapping("/getByName/{firstName}")
+//    public ResponseEntity<ResponseDTO> getUsersByFirstName(@PathVariable String firstName)
+//    {
+//        List<Employee> dataByName = iEmployeeService.getUsersByFirstName(firstName);
+//        ResponseDTO responseDTO = new ResponseDTO(firstName+"Employee All Data Received Successfully",dataByName );
+//        log.info(firstName+" Employee All Data Successfully.......");
+//        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+//    }
+    @GetMapping("/getByName/{firstName}")
+    public List<Employee> getUsersByFirstName(@PathVariable String firstName)
+    {
+        log.info(firstName+" Employee All Data Successfully.......");
+        return iEmployeeService.getUsersByFirstName(firstName);
+    }
+
 }

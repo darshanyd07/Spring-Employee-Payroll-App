@@ -21,4 +21,5 @@ public interface IEmployeeService
     String deleteById(int id);
 
     String editEmployee(EmployeeDTO employeeDtO, int id);
+    List<Employee> getUsersByFirstName(String firstName);
 }

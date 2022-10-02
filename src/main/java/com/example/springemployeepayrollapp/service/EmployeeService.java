@@ -35,7 +35,8 @@ public class EmployeeService implements IEmployeeService {
     }
 
 
-    public Optional<Employee> getById(int id) {
+    public Optional<Employee> getById(int id)
+    {
         if (employeeRepository.findById(id).isPresent()) {
             log.info("---------Employee Id :- " + id + " Show Successfully -----------");
             return employeeRepository.findById(id);
@@ -76,6 +77,11 @@ public class EmployeeService implements IEmployeeService {
             return employeeRepository.findEmployeeByDepartment(department);
         }
 
+    }
+
+    public List<Employee> getUsersByFirstName(String firstName)
+    {
+        return employeeRepository.getUsersByFirstName(firstName);
     }
 }
 
